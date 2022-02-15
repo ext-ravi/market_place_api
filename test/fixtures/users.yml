@@ -2,8 +2,6 @@
 
 one:
   email: myemail@gmail.com
-  password_digest: MyString
+  password_digest: <%= BCrypt::Password.create('g00d_pa$$') %>
 
-two:
-  email: MyString
-  password_digest: MyString
+
