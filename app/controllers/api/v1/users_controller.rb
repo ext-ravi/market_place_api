@@ -3,6 +3,10 @@ class Api::V1::UsersController < ApplicationController
     before_action :set_user, only: %i[show update destroy] 
     before_action :check_owner, only: %i[update destroy]
     
+    def index
+      render json: User.all
+    end
+
     def show
         render json: @user
     end
