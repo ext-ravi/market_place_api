@@ -4,6 +4,7 @@ class Api::V1::ProductsController < ApplicationController
   before_action :check_owner, only: %i[update destroy]
 
   def show
+    options = { include: [:user] }
     render json: ProductSerializer.new(@product).serializable_hash
   end
 
@@ -27,7 +28,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      render json: ProductSerializer.new(@product).serializable_hash  
+      render json: ProductSerializer.new(@product).serializable_hash
     else
       render json: @product.errors, status: :unprocessable_entity
     end
