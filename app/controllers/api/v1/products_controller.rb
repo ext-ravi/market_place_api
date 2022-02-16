@@ -4,7 +4,7 @@ class Api::V1::ProductsController < ApplicationController
   before_action :check_owner, only: %i[update destroy]
 
   def show
-    render json: :Product.find(params[:id])
+    render json: Product.find(params[:id])
   end
 
   def index
