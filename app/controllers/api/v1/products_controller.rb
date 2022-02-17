@@ -9,7 +9,8 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def index
-    render json: ProductSerializer.new(Product.all).serializable_hash
+    @product = Product.search(params)
+    render json: ProductSerializer.new(@product).serializable_hash
   end
 
   def create
