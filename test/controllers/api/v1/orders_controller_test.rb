@@ -11,15 +11,13 @@ class Api::V1::OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show order" do
-    get api_v1_orders_url,
+    get api_v1_order_url(@order),
         headers: { Authorization: JsonWebToken.encode(user_id: @order.user_id) },
         as: :json
     assert_response :success
     json_response = JSON.parse(response.body)
-    include_product_attr = json_response['included'][0]['attributes']
+    include_product_attr = json_response["included"][0]["attributes"]
     assert_equal @order.products.first.title,
-    include_product_attr['title']
+                 include_product_attr["title"]
   end
-
-
 end
